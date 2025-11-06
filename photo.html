@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo</title>
+  <link rel="preload" as="image" href="images/bg_photo.jpg">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    /* 🔹 Ảnh nền */
+    .bg-image {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: -1;
+    }
+
+    h2 {
+      margin: 30px 0 15px;
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .tabs {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .tabs button {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .tabs button.active,
+    .tabs button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* Grid ảnh */
+    .gallery {
+      display: grid;
+      gap: 15px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .images-grid {
+      grid-template-columns: repeat(5, 160px);
+    }
+
+    .gallery div {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    .gallery div.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    .gallery div:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup.show {display: flex;}
+
+    .popup-content {
+      position: relative;
+      display: inline-block;
+    }
+
+    .popup-content img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      display: block;
+      object-fit: contain;
+    }
+
+    .popup-content .close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 36px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      background: rgba(0,0,0,0.6);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+    .popup-content .close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 14px;
+      border-radius: 6px;
+      z-index: 2000;
+      transition: background 0.2s ease;
+    }
+    .back:hover {
+      background: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <img src="images/bg_photo.webp" alt="Background" class="bg-image">
+  <div class="overlay"></div>
+
+  <a href="index.html" class="back">⟵ Quay lại</a>
+
+  <div class="tabs">
+    <button id="tab-images" class="active">Image</button>
+  </div>
+
+  <h2>DON CHICKEN - Chuỗi nhà hàng Hàn Quốc</h2>
+  <div id="images-section-2" class="gallery images-grid"></div>
+
+  <h2>Portrait shooting - Ảnh chân dung/Beauty</h2>
+  <div id="images-section-1" class="gallery images-grid"></div>
+
+  <h2>Other - Khác</h2>
+  <div id="images-section-3" class="gallery images-grid"></div>
+
+  <!-- Popup dùng chung -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <img id="popup-img" loading="lazy" decoding="async" alt="">
+      <span class="close">&times;</span>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    const closeBtn = document.querySelector(".close");
+
+    // 🔹 Tạo gallery
+    function createImages(section, path, count) {
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement("div");
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = `${path}${i}.webp`;
+        img.alt = `Work ${i}`;
+        div.appendChild(img);
+
+        // Mở popup
+        div.addEventListener("click", () => {
+          popupImg.src = `${path}${i}.webp`;
+          popup.classList.add("show");
+        });
+
+        section.appendChild(div);
+      }
+    }
+
+    // Gọi 3 gallery
+    createImages(document.getElementById("images-section-1"), "images/photo/image_2_", 16);
+    createImages(document.getElementById("images-section-2"), "images/photo/image_1_", 10);
+    createImages(document.getElementById("images-section-3"), "images/photo/image_3_", 1);
+
+    // 🔹 Đóng popup
+    closeBtn.addEventListener("click", () => popup.classList.remove("show"));
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.classList.remove("show");
+    });
+
+    // 🔹 Hiệu ứng load ảnh mượt
+    window.addEventListener("load", () => {
+      const items = document.querySelectorAll(".gallery div");
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add("show");
+        }, index * 80); // trễ 80ms giữa mỗi ảnh
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Motion Graphic</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box}
+    body {
+      font-family: Arial, sans-serif;
+      color:#fff;
+      text-align:center;
+      overflow-x:hidden;
+      background:#000;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:url("https://whatsip.github.io/khanhlam/images/design/bg_design.jpg") center/cover no-repeat;
+      z-index:-2;
+      filter:brightness(0.25);
+    }
+    .overlay{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.7);
+      z-index:-1;
+    }
+
+    h2{
+      margin:30px 0 15px;font-size:2em;font-weight:700;
+      text-shadow:0 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .tabs{
+      margin:20px auto;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+    }
+    .tabs button{
+      background:rgba(255,255,255,0.1);
+      border:0;color:#fff;
+      padding:10px 20px;
+      border-radius:6px;
+      cursor:pointer;
+      transition:background .2s;
+    }
+    .tabs button.active,
+    .tabs button:hover{
+      background:rgba(255,255,255,0.3);
+    }
+
+    .gallery{
+      display:grid;
+      gap:15px;
+      justify-content:center;
+      padding:20px;
+    }
+    .videos-grid{
+      grid-template-columns:repeat(5,160px);
+      grid-auto-rows:160px;
+      display:grid;
+    }
+
+    .tile{
+      width:160px;height:160px;
+      border-radius:12px;
+      overflow:hidden;
+      cursor:pointer;
+      background:#111;
+      box-shadow:0 4px 8px rgba(0,0,0,0.5);
+    }
+
+    .tile video{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .3s;
+    }
+    .tile:hover video{
+      transform:scale(1.05);
+    }
+
+    .popup{
+      display:none;
+      position:fixed;z-index:1000;
+      left:0;top:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.85);
+      justify-content:center;
+      align-items:center;
+    }
+    .popup.active{
+      display:flex;
+    }
+
+    .popup-content{
+      position:relative;
+      display:inline-block;
+    }
+
+    .popup-content video{
+      max-width:90vw;
+      max-height:90vh;
+      border-radius:8px;
+      box-shadow:0 0 20px rgba(0,0,0,0.6);
+      object-fit:contain;
+    }
+
+    .close{
+      position:absolute;top:-16px;right:-16px;
+      font-size:28px;
+      width:40px;height:40px;
+      border-radius:50%;
+      background:rgba(0,0,0,0.7);
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-decoration:none;
+    }
+
+    .back{
+      position:fixed;top:20px;left:10px;
+      padding:2px 8px;background:rgba(0,0,0,0.5);
+      color:#fff;border-radius:4px;
+      text-decoration:none;font-weight:600;
+      z-index:2000;
+    }
+
+    @media (max-width:900px){
+      .videos-grid{grid-template-columns:repeat(3,120px);grid-auto-rows:120px}
+      .tile{width:120px;height:120px}
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <a href="index.html" class="back">⟵ Quay lại</a>
+
+  <div class="tabs">
+    <button onclick="window.location.href='design.html'">Image</button>
+    <button class="active">Motion Graphic</button>
+  </div>
+
+  <h2>Motion Graphic</h2>
+
+  <div class="gallery videos-grid">
+
+    <!-- 9 video tiles -->
+    <a href="javascript:void(0)" data-popup="v1">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/images/design/video1.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v2">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video2.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v3">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video3.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v4">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video4.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v5">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video5.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v6">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video6.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v7">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video7.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v8">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video8.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+    <a href="javascript:void(0)" data-popup="v9">
+      <div class="tile">
+        <video src="https://whatsip.github.io/khanhlam/videos/video9.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- POPUPS -->
+  <div id="v1" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/images/design/video1.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v2" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video2.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v3" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video3.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v4" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video4.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v5" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video5.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v6" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video6.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v7" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video7.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v8" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video8.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+  <div id="v9" class="popup"><div class="popup-content"><video src="https://whatsip.github.io/khanhlam/videos/video9.mp4" controls autoplay></video><a href="#" class="close">&times;</a></div></div>
+
+
+  <script>
+    document.querySelectorAll("[data-popup]").forEach(el=>{
+      el.onclick = ()=>{
+        const id = el.dataset.popup;
+        document.getElementById(id).classList.add("active");
+      };
+    });
+    document.querySelectorAll(".close").forEach(btn=>{
+      btn.onclick = e=>{
+        e.preventDefault();
+        btn.closest(".popup").classList.remove("active");
+      };
+    });
+  </script>
+</body>
+</html>

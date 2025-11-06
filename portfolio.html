@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Nguyễn Khánh Lam - Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Background video */
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1000px; /* tăng rộng thêm để chứa 2 cột */
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid #0078d7;
+    }
+    header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* Bố cục 2 cột cho Thông tin + Học vấn */
+    .info-edu {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .info-edu section {
+      flex: 1;
+    }
+
+    /* Line ở giữa */
+    .divider {
+      width: 2px;
+      background: #0078d7;
+      margin: 0 15px;
+    }
+
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      border-left: 5px solid #0078d7;
+      padding-left: 10px;
+      color: #0078d7;
+    }
+
+    .info-item {
+      margin-bottom: 8px;
+      font-size: 15px; /* chỉnh size text */
+      color: #000; /* chỉnh màu text */
+    }
+
+    .edu-item {
+      margin-bottom: 15px;
+    }
+    .edu-item h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    .edu-item span {
+      font-size: 15px;
+      color: #000000;
+    }
+    .edu-item p {
+      font-size: 15px;
+      margin-top: 5px;
+      color: #000;
+    }
+
+    .exp-item {
+      margin-bottom: 15px;
+    }
+    .exp-item h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    .exp-item span {
+      font-size: 15px;
+      color: #000000;
+    }
+
+    ul.skills {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    ul.skills li {
+      background: #0078d7;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="bg_portfolio.mp4" type="video/mp4">
+  </video>
+
+  <div class="container">
+    <header>
+      <img src="images/avatar.jpg" alt="Nguyễn Khánh Lam">
+      <h1>Nguyễn Khánh Lam</h1>
+      <p>Graphic Designer | Photographer | Filmmaker | Computer Specialist</p>
+    </header>
+
+    <!-- Thông tin cá nhân + Học vấn chung 1 hàng -->
+    <div class="info-edu">
+      <!-- Thông tin cá nhân -->
+      <section>
+        <h2>Thông tin cá nhân</h2>
+        <div class="info-item"><b>Họ và tên:</b> Nguyễn Khánh Lam</div>
+        <div class="info-item"><b>Ngày sinh:</b> 26/11/2000</div>
+        <div class="info-item"><b>Giới tính:</b> Nam</div>
+        <div class="info-item"><b>Quốc tịch:</b> Việt Nam</div>
+        <div class="info-item"><b>Quê quán:</b> Đồng Nai</div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Học vấn -->
+      <section>
+        <h2>Học vấn</h2>
+        <div class="edu-item">
+          <h3>Đại học Công nghệ Đồng Nai</h3>
+          <span>Chuyên ngành: Ngôn ngữ Anh | Năm tốt nghiệp: 2022</span>
+          <p>Bằng cấp: Cử nhân Ngôn ngữ Anh</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Kinh nghiệm làm việc -->
+    <section>
+      <h2>Kinh nghiệm làm việc</h2>
+      <div class="exp-item">
+        <h3>Trường Đại học Công nghệ Đồng Nai</h3>
+        <span><b>Vị trí:</b> Cộng tác viên Multimedia | 2018 - 2020</span>
+        <p><b>Mô tả:</b> Thực hiện sản xuất các ấn phẩm banner, poster, video 2D.</p>
+      </div>
+      <div class="exp-item">
+        <h3>TP-Shop Đại lý bán lẻ Apple</h3>
+        <span><b>Vị trí:</b> Nhân viên Thiết kế đồ họa | 2019 - 2025 (Part-time)</span>
+        <p><b>Mô tả:</b> Thực hiện sản xuất các ấn phẩm banner, poster, video 2D phục vụ quảng cáo.</p>
+      </div>
+      <div class="exp-item">
+        <h3>Công Ty TNHH Her Ikigai</h3>
+        <span><b>Vị trí:</b> Nhân viên Multimedia | 12/2022 - 12/2023</span>
+        <p><b>Mô tả:</b></p>
+<ul style="margin-left: 30px;">
+  <li>Thiết kế các ấn phẩm banner, poster phục vụ quảng cáo.</li>
+  <li>Quay, dựng các sản phẩm video phục vụ quảng cáo.</li>
+  <li>Lên kế hoạch tổ chức sự kiện, hội thảo cho tổ chức, doanh nghiệp.</li>
+</ul>
+      </div>
+      <div class="exp-item">
+        <h3>Công Ty TNHH Elep Media</h3>
+        <span><b>Vị trí:</b> Đạo diễn Hình ảnh / Kỹ thuật viên / Cameraman | 12/2023 - 01/2025 (Part-time)</span>
+        <p><b>Mô tả:</b></p>
+<ul style="margin-left: 30px;">
+  <li>Chỉ đạo, điều phối toàn bộ hình ảnh livestream.</li>
+  <li>Cài đặt cấu hình hệ thống máy móc vận hành livestream.</li>
+  <li>Thiết lập, vận hành máy quay, ghi hình theo chỉ đạo phiên livestream.</li>
+</ul>
+      </div>
+      <div class="exp-item">
+        <h3>Công Ty TNHH Công Nghệ Thực Phẩm Việt Hàn</h3>
+        <span><b>Vị trí:</b> Nhân viên Thiết kế đồ họa / Nhân viên IT | 04/2024 - 08/2025</span>
+        <p><b>Mô tả:</b></p>
+<ul style="margin-left: 30px;">
+  <li>Thiết kế các ấn phẩm banner, poster phục vụ quảng cáo.</li>
+  <li>Chụp, quay, dựng các sản phẩm hình ảnh, video phục vụ quảng cáo.</li>
+  <li>Hỗ trợ cài đặt cấu hình phần mềm bán hàng SpeedPOS cho chuỗi nhà hàng.</li>
+  <li>Thiết kế Website donchicken.vn phục vụ chuỗi nhà hàng cty.</li>
+</ul>
+    </section>
+
+    <!-- Kỹ năng -->
+    <section>
+      <h2>Kỹ năng</h2>
+      <div class="skills-list">
+        <div class="skill-item">
+          <div class="skill-header">
+            <div>
+              <div class="skill-title">2D Graphic Design</div>
+              <div class="stars"><span>⭐⭐⭐⭐☆</span></div>
+            </div>
+            <button onclick="openPage('design.html')">Xem</button>
+          </div>
+          <div class="skill-note">Sử dụng thành thạo các phần mềm thiết kế Adobe Photoshop, Illustrator và ứng dụng AI trong thiết kế.</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <div>
+              <div class="skill-title">Photography/Editing</div>
+              <div class="stars"><span>⭐⭐⭐⭐☆</span></div>
+            </div>
+            <button onclick="openPage('photo.html')">Xem</button>
+          </div>
+          <div class="skill-note">Sử dụng thành thạo các thiết bị máy ảnh digital và phụ kiện để sản xuất phục vụ thương mại.</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <div>
+              <div class="skill-title">Videography/Editing</div>
+              <div class="stars"><span>⭐⭐⭐⭐☆</span></div>
+            </div>
+            <button onclick="openPage('video.html')">Xem</button>
+          </div>
+          <div class="skill-note">Sử dụng thành thạo các thiết bị máy quay và phụ kiện nâng cao phục vụ sản xuất phim ảnh, quảng cáo và livestream thương mại.</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <div>
+              <div class="skill-title">Event Planning/Management</div>
+              <div class="stars"><span>⭐⭐⭐☆☆</span></div>
+            </div>
+            <button onclick="openPage('event.html')">Xem</button>
+          </div>
+          <div class="skill-note">Có kinh nghiệm lên kế hoạch và tổ chức các event nội bộ như Grand Opening, Year End Party, Course và Expo.</div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-header">
+            <div>
+              <div class="skill-title">Computer Hardware/Software Mastery</div>
+              <div class="stars"><span>⭐⭐⭐⭐☆</span></div>
+            </div>
+            <button onclick="openPage('tech.html')">Xem</button>
+          </div>
+          <div class="skill-note">Có kinh nghiệm và thành thạo trong việc sử dụng phầm mềm, phần cứng máy tính và sửa chữa các vấn đề văn phòng hay gặp (VD: phần mềm lỗi, mở không lên, win lỗi, máy lag, mạng, máy in,...).</div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .skills-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+      .skill-item {
+        background: #f5f5f5;
+        padding: 12px 15px;
+        border-radius: 8px;
+      }
+      .skill-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .skill-title {
+        font-weight: 600;
+        font-size: 16px;
+        color: #000;
+        margin-bottom: 3px;
+      }
+      .stars {
+        color: #FFD700;
+        font-size: 18px;
+      }
+      .skill-note {
+        font-size: 13px;
+        color: #555;
+        font-style: italic;
+        margin-top: 6px;
+      }
+      .skill-item button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        background: #0078d7;
+        color: #fff;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .skill-item button:hover {
+        background: #005fa3;
+      }
+    </style>
+
+    <script>
+      function openPage(url) {
+        window.location.href = url;
+      }
+    </script>
+
+    <footer>
+      &copy; 2025 Nguyễn Khánh Lam. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

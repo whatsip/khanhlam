@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Design</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box}
+    body {
+      font-family: Arial, sans-serif;
+      color:#fff;
+      text-align:center;
+      overflow-x:hidden;
+      background:#000;
+    }
+
+    /* Background image from GitHub */
+    body::before{
+      content:"";
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      background: url("https://whatsip.github.io/khanhlam/images/design/bg_design.jpg") center/cover no-repeat;
+      z-index:-2;
+      filter:brightness(0.25);
+    }
+
+    .overlay{
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background: rgba(0,0,0,0.7);
+      z-index:-1;
+    }
+
+    h2{
+      margin:30px 0 15px;font-size:2em;font-weight:700;
+      text-shadow:0 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .tabs{margin:20px auto;display:flex;justify-content:center;gap:10px}
+    .tabs button{
+      background:rgba(255,255,255,0.1);border:0;color:#fff;padding:10px 20px;border-radius:6px;
+      cursor:pointer;transition:background .2s;
+    }
+    .tabs button.active,.tabs button:hover{background:rgba(255,255,255,0.3)}
+
+    .gallery{display:grid;gap:15px;justify-content:center;padding:20px}
+    .images-grid{grid-template-columns:repeat(5,160px);grid-auto-rows:160px;display:grid}
+    .videos-grid{grid-template-columns:repeat(5,160px);grid-auto-rows:160px;display:grid}
+
+    .gallery .tile{width:160px;height:160px;overflow:hidden;border-radius:12px;
+      box-shadow:0 4px 8px rgba(0,0,0,0.5);cursor:pointer;background:#111}
+    .gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+    .gallery .tile:hover img{transform:scale(1.05)}
+
+    .popup{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.85);justify-content:center;align-items:center}
+    .popup.active{display:flex}
+    .popup-content{position:relative;display:inline-block}
+    .popup-content img{max-width:90vw;max-height:90vh;border-radius:8px;box-shadow:0 0 20px rgba(0,0,0,0.6);object-fit:contain;display:block}
+    .popup-content .close{
+      position:absolute;top:-16px;right:-16px;font-size:28px;background:rgba(0,0,0,0.7);
+      width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      color:#fff;text-decoration:none;
+    }
+    .back{
+      position:fixed;top:20px;left:10px;padding:2px 8px;background:rgba(0,0,0,0.5);
+      color:#fff;border-radius:4px;text-decoration:none;z-index:2000;font-weight:600
+    }
+
+    /* responsive small screens */
+    @media (max-width:900px){
+      .images-grid,.videos-grid{grid-template-columns:repeat(3,120px);grid-auto-rows:120px}
+      .gallery .tile{width:120px;height:120px}
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <a href="index.html" class="back">⟵ Quay lại</a>
+
+  <div class="tabs">
+	<button id="tab-images" class="active">Image</button>
+	<button onclick="window.location.href='design_motion.html'">Motion Graphic</button>
+  </div>
+
+
+  <!-- DON CHICKEN (image_1_1.jpg ... image_1_20.jpg) -->
+  <h2>DON CHICKEN - Chuỗi nhà hàng Hàn Quốc</h2>
+  <div id="images-section-2" class="gallery images-grid">
+    <a href="javascript:void(0)" data-popup="dc1"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_1.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc2"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_2.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc3"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_3.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc4"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_4.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc5"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_5.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="dc6"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_6.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc7"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_7.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc8"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_8.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc9"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_9.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc10"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_10.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="dc11"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_11.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc12"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_12.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc13"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_13.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc14"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_14.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc15"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_15.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="dc16"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_16.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc17"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_17.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc18"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_18.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc19"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_19.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="dc20"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_20.jpg" alt=""></div></a>
+  </div>
+
+  <!-- Popups for Don Chicken -->
+  <div id="dc1" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_1.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc2" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_2.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc3" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_3.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc4" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_4.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc5" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_5.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="dc6" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_6.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc7" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_7.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc8" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_8.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc9" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_9.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc10" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_10.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="dc11" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_11.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc12" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_12.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc13" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_13.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc14" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_14.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc15" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_15.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="dc16" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_16.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc17" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_17.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc18" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_18.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc19" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_19.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="dc20" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_1_20.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <!-- TP-SHOP (image1.jpg ... image20.jpg) -->
+  <h2>TP-Shop - Đại lý bán lẻ chính hãng Apple</h2>
+  <div id="images-section-1" class="gallery images-grid">
+    <a href="javascript:void(0)" data-popup="tp1"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image1.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp2"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image2.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp3"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image3.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp4"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image4.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp5"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image5.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="tp6"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image6.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp7"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image7.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp8"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image8.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp9"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image9.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp10"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image10.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="tp11"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image11.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp12"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image12.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp13"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image13.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp14"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image14.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp15"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image15.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="tp16"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image16.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp17"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image17.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp18"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image18.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp19"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image19.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="tp20"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image20.jpg" alt=""></div></a>
+  </div>
+
+  <!-- Popups TP-SHOP -->
+  <div id="tp1" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image1.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp2" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image2.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp3" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image3.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp4" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image4.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp5" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image5.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="tp6" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image6.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp7" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image7.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp8" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image8.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp9" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image9.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp10" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image10.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="tp11" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image11.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp12" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image12.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp13" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image13.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp14" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image14.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp15" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image15.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="tp16" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image16.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp17" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image17.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp18" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image18.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp19" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image19.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="tp20" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image20.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <!-- OTHER (image_3_1 ... image_3_9) -->
+  <h2>Other - Khác</h2>
+  <div id="images-section-3" class="gallery images-grid">
+    <a href="javascript:void(0)" data-popup="ot1"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_1.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot2"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_2.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot3"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_3.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot4"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_4.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot5"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_5.jpg" alt=""></div></a>
+
+    <a href="javascript:void(0)" data-popup="ot6"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_6.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot7"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_7.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot8"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_8.jpg" alt=""></div></a>
+    <a href="javascript:void(0)" data-popup="ot9"><div class="tile"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_9.jpg" alt=""></div></a>
+    <!-- fill rest with blanks to keep grid consistent if needed -->
+  </div>
+
+  <!-- Popups Other -->
+  <div id="ot1" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_1.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot2" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_2.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot3" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_3.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot4" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_4.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot5" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_5.jpg"><a href="#" class="close">&times;</a></div></div>
+
+  <div id="ot6" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_6.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot7" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_7.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot8" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_8.jpg"><a href="#" class="close">&times;</a></div></div>
+  <div id="ot9" class="popup"><div class="popup-content"><img src="https://whatsip.github.io/khanhlam/images/design/image_3_9.jpg"><a href="#" class="close">&times;</a></div></div>
+
+<script>
+  // open popup
+  document.querySelectorAll("[data-popup]").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const id = el.getAttribute("data-popup");
+      const p = document.getElementById(id);
+      if(p) p.classList.add("active");
+    });
+  });
+
+  // close popup by clicking overlay or close btn
+  document.querySelectorAll(".popup").forEach(p=>{
+    p.addEventListener("click", e=>{
+      if(e.target === p){
+        p.classList.remove("active");
+      }
+    });
+    const close = p.querySelector(".close");
+    if(close){
+      close.addEventListener("click", e=>{
+        e.preventDefault();
+        p.classList.remove("active");
+      });
+    }
+  });
+
+  // Tabs (images only; videos not used)
+  const tabImages = document.getElementById("tab-images");
+  const tabVideos = document.getElementById("tab-videos");
+
+  tabImages.addEventListener("click", ()=>{
+    document.querySelectorAll("[id^=images-section]").forEach(el=>el.style.display="grid");
+    document.querySelectorAll("[id^=videos-section]").forEach(el=>el.style.display="none");
+    tabImages.classList.add("active");
+    tabVideos.classList.remove("active");
+  });
+
+  tabVideos.addEventListener("click", ()=>{
+    document.querySelectorAll("[id^=images-section]").forEach(el=>el.style.display="none");
+    document.querySelectorAll("[id^=videos-section]").forEach(el=>el.style.display="grid");
+    tabVideos.classList.add("active");
+    tabImages.classList.remove("active");
+  });
+</script>
+
+</body>
+</html>

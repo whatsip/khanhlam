@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Technical</title>
+  <link rel="preload" as="image" href="images/bg_photo.jpg">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    .bg-image {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: -1;
+    }
+
+    h2 {
+      margin: 30px 0 15px;
+      font-size: 2em;
+      font-weight: bold;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .gallery-wrapper {
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      padding: 0 20px 20px;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      background: #111;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      will-change: transform;
+    }
+
+    .caption {
+      font-size: 14px;
+      color: #ccc;
+      text-align: left;
+      margin-top: 8px;
+      padding-left: 5px;
+    }
+
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup.show { display: flex; }
+
+    .popup-content {
+      position: relative;
+      display: inline-block;
+    }
+
+    .popup-content img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      object-fit: contain;
+    }
+
+    .popup-content .close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 22px;
+      color: #fff;
+      background: rgba(0,0,0,0.6);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .popup-content .close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 14px;
+      border-radius: 6px;
+      z-index: 2000;
+      transition: background 0.2s ease;
+    }
+    .back:hover {
+      background: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <img src="images/bg_photo.jpg" alt="Background" class="bg-image">
+  <div class="overlay"></div>
+
+  <a href="index.html" class="back">⟵ Quay lại</a>
+
+  <h2>Livestream technician and DOP - Kỹ thuật viên và đạo diễn hình ảnh livestream</h2>
+  <div class="gallery-wrapper">
+    <div id="technical-gallery" class="gallery"></div>
+    <div class="caption">
+      Đạo diễn hình ảnh chính các phiên Mega Livestream của host 
+      <b>Hằng Du Mục - Quang Linh Vlog - Thùy Tiên, Phạm Thoại Megalive Phố đi bộ, Hepmil, Lucie - Tuấn Dương</b>
+    </div>
+  </div>
+
+  <h2>Website design and maintenance - Thiết kế, vận hành và bảo trì Web</h2>
+  <div class="gallery-wrapper">
+    <div id="studio-gallery" class="gallery"></div>
+    <div class="caption">Thiết kế, vận hành và bảo trì website <u>donchicken.vn</u>.</div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <img id="popup-img" loading="lazy" decoding="async" alt="">
+      <span class="close">&times;</span>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    const closeBtn = document.querySelector(".close");
+
+    // Tạo gallery
+    function createGallery(section, path, count) {
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement("div");
+        div.className = "gallery-item";
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = `${path}${i}.webp`;
+        img.alt = `Work ${i}`;
+        div.appendChild(img);
+
+        div.addEventListener("click", () => {
+          popupImg.src = img.src;
+          popup.classList.add("show");
+        });
+
+        section.appendChild(div);
+      }
+    }
+
+    createGallery(document.getElementById("technical-gallery"), "images/tech/image_1_", 15);
+    createGallery(document.getElementById("studio-gallery"), "images/tech/image_2_", 10);
+
+    // Đóng popup
+    closeBtn.addEventListener("click", () => popup.classList.remove("show"));
+    popup.addEventListener("click", e => {
+      if (e.target === popup) popup.classList.remove("show");
+    });
+
+    // Hiệu ứng load ảnh từ trái sang phải
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".gallery-item").forEach((item, index) => {
+        setTimeout(() => item.classList.add("show"), index * 80);
+      });
+    });
+  </script>
+</body>
+</html>
