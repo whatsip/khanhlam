@@ -10,18 +10,13 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* Background video */
-    #bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+    /* Background removed (no video) */
+    body {
+      background: #f0f0f0;
     }
 
     .container {
-      max-width: 1000px; /* tăng rộng thêm để chứa 2 cột */
+      max-width: 1000px;
       margin: 40px auto;
       background: rgba(255, 255, 255, 0.9);
       padding: 30px;
@@ -51,7 +46,6 @@
       color: #555;
     }
 
-    /* Bố cục 2 cột cho Thông tin + Học vấn */
     .info-edu {
       display: flex;
       gap: 20px;
@@ -61,7 +55,6 @@
       flex: 1;
     }
 
-    /* Line ở giữa */
     .divider {
       width: 2px;
       background: #0078d7;
@@ -78,8 +71,8 @@
 
     .info-item {
       margin-bottom: 8px;
-      font-size: 15px; /* chỉnh size text */
-      color: #000; /* chỉnh màu text */
+      font-size: 15px;
+      color: #000;
     }
 
     .edu-item {
@@ -136,21 +129,15 @@
   </style>
 </head>
 <body>
-  <!-- Background Video -->
-  <video autoplay muted loop id="bg-video">
-    <source src="bg_portfolio.mp4" type="video/mp4">
-  </video>
 
   <div class="container">
     <header>
-      <img src="images/avatar.jpg" alt="Nguyễn Khánh Lam">
+      <img src="https://whatsip.github.io/khanhlam/images/avatar.jpg" alt="Nguyễn Khánh Lam">
       <h1>Nguyễn Khánh Lam</h1>
       <p>Graphic Designer | Photographer | Filmmaker | Computer Specialist</p>
     </header>
 
-    <!-- Thông tin cá nhân + Học vấn chung 1 hàng -->
     <div class="info-edu">
-      <!-- Thông tin cá nhân -->
       <section>
         <h2>Thông tin cá nhân</h2>
         <div class="info-item"><b>Họ và tên:</b> Nguyễn Khánh Lam</div>
@@ -162,7 +149,6 @@
 
       <div class="divider"></div>
 
-      <!-- Học vấn -->
       <section>
         <h2>Học vấn</h2>
         <div class="edu-item">
@@ -173,7 +159,6 @@
       </section>
     </div>
 
-    <!-- Kinh nghiệm làm việc -->
     <section>
       <h2>Kinh nghiệm làm việc</h2>
       <div class="exp-item">
@@ -181,11 +166,13 @@
         <span><b>Vị trí:</b> Cộng tác viên Multimedia | 2018 - 2020</span>
         <p><b>Mô tả:</b> Thực hiện sản xuất các ấn phẩm banner, poster, video 2D.</p>
       </div>
+
       <div class="exp-item">
         <h3>TP-Shop Đại lý bán lẻ Apple</h3>
         <span><b>Vị trí:</b> Nhân viên Thiết kế đồ họa | 2019 - 2025 (Part-time)</span>
         <p><b>Mô tả:</b> Thực hiện sản xuất các ấn phẩm banner, poster, video 2D phục vụ quảng cáo.</p>
       </div>
+
       <div class="exp-item">
         <h3>Công Ty TNHH Her Ikigai</h3>
         <span><b>Vị trí:</b> Nhân viên Multimedia | 12/2022 - 12/2023</span>
@@ -196,6 +183,7 @@
   <li>Lên kế hoạch tổ chức sự kiện, hội thảo cho tổ chức, doanh nghiệp.</li>
 </ul>
       </div>
+
       <div class="exp-item">
         <h3>Công Ty TNHH Elep Media</h3>
         <span><b>Vị trí:</b> Đạo diễn Hình ảnh / Kỹ thuật viên / Cameraman | 12/2023 - 01/2025 (Part-time)</span>
@@ -206,6 +194,7 @@
   <li>Thiết lập, vận hành máy quay, ghi hình theo chỉ đạo phiên livestream.</li>
 </ul>
       </div>
+
       <div class="exp-item">
         <h3>Công Ty TNHH Công Nghệ Thực Phẩm Việt Hàn</h3>
         <span><b>Vị trí:</b> Nhân viên Thiết kế đồ họa / Nhân viên IT | 04/2024 - 08/2025</span>
@@ -218,7 +207,6 @@
 </ul>
     </section>
 
-    <!-- Kỹ năng -->
     <section>
       <h2>Kỹ năng</h2>
       <div class="skills-list">
@@ -230,7 +218,7 @@
             </div>
             <button onclick="openPage('design.html')">Xem</button>
           </div>
-          <div class="skill-note">Sử dụng thành thạo các phần mềm thiết kế Adobe Photoshop, Illustrator và ứng dụng AI trong thiết kế.</div>
+          <div class="skill-note">Sử dụng thành thạo Adobe Photoshop, Illustrator và ứng dụng AI trong thiết kế.</div>
         </div>
 
         <div class="skill-item">
@@ -241,7 +229,7 @@
             </div>
             <button onclick="openPage('photo.html')">Xem</button>
           </div>
-          <div class="skill-note">Sử dụng thành thạo các thiết bị máy ảnh digital và phụ kiện để sản xuất phục vụ thương mại.</div>
+          <div class="skill-note">Thành thạo máy ảnh digital và phụ kiện phục vụ thương mại.</div>
         </div>
 
         <div class="skill-item">
@@ -252,7 +240,7 @@
             </div>
             <button onclick="openPage('video.html')">Xem</button>
           </div>
-          <div class="skill-note">Sử dụng thành thạo các thiết bị máy quay và phụ kiện nâng cao phục vụ sản xuất phim ảnh, quảng cáo và livestream thương mại.</div>
+          <div class="skill-note">Sử dụng thành thạo máy quay, phụ kiện nâng cao, livestream.</div>
         </div>
 
         <div class="skill-item">
@@ -263,7 +251,7 @@
             </div>
             <button onclick="openPage('event.html')">Xem</button>
           </div>
-          <div class="skill-note">Có kinh nghiệm lên kế hoạch và tổ chức các event nội bộ như Grand Opening, Year End Party, Course và Expo.</div>
+          <div class="skill-note">Kinh nghiệm tổ chức event như Grand Opening, Year End Party.</div>
         </div>
 
         <div class="skill-item">
@@ -274,7 +262,7 @@
             </div>
             <button onclick="openPage('tech.html')">Xem</button>
           </div>
-          <div class="skill-note">Có kinh nghiệm và thành thạo trong việc sử dụng phầm mềm, phần cứng máy tính và sửa chữa các vấn đề văn phòng hay gặp (VD: phần mềm lỗi, mở không lên, win lỗi, máy lag, mạng, máy in,...).</div>
+          <div class="skill-note">Thành thạo phần mềm, phần cứng máy tính, sửa lỗi văn phòng.</div>
         </div>
       </div>
     </section>
