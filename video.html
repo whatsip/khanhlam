@@ -36,22 +36,25 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.7);
     }
 
+/* ===== Layout desktop (5 cột) ===== */
 .gallery {
   display: grid;
   gap: 15px;
   justify-content: center;
   padding: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  max-width: 1000px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  max-width: 950px;
   margin: 0 auto;
 }
 
 .gallery div {
-  aspect-ratio: 1 / 1; /* ô vuông tự động */
+  position: relative;
+  width: 180px;
+  height: 180px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   background: #111;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -68,19 +71,27 @@
   object-fit: cover;
 }
 
+/* ===== Layout mobile (3 cột) ===== */
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 100%;
+    padding: 10px;
+  }
 
-    /* Responsive: giảm còn 3 cột trên mobile */
-    @media (max-width: 900px) {
-      .gallery {
-        grid-template-columns: repeat(3, 120px);
-        grid-auto-rows: 120px;
-      }
+  .gallery div {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* vẫn giữ ô vuông */
+    border-radius: 10px;
+    transform: scale(0.9); /* scale nhẹ toàn bộ ô xuống 90% */
+  }
 
-      .gallery div {
-        width: 120px;
-        height: 120px;
-      }
-    }
+  .gallery iframe {
+    border-radius: inherit;
+  }
+}
+
 
     /* Popup */
     .popup {
@@ -234,5 +245,6 @@
 
 </body>
 </html>
+
 
 
