@@ -65,8 +65,8 @@
       transform: translateY(-50px);
       transition: opacity 1s ease, transform 1s ease, box-shadow 0.3s;
       position: relative;
-      padding-top: 40%; /* PC ratio 5:2 */
-      background-image: url('images/main.jpg');
+      padding-top: 40%;
+      background-image: url('https://whatsip.github.io/khanhlam/images/main.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -106,13 +106,12 @@
     }
     .box:hover { transform: scale(1.05); background: #555; }
     .box img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
-    .box span { margin-top: 5px; font-size: 14px; color: #fff; }
 
     /* Mobile tweaks */
     @media (max-width: 768px) {
       #container {
         padding: 10px;
-        transform: none !important; /* giữ container center */
+        transform: none !important;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -128,8 +127,8 @@
 
       .main-img {
         width: 80%;
-        padding-top: 150%; /* 4:6 ratio */
-        background-image: url('images/main_mobile.jpg');
+        padding-top: 150%;
+        background-image: url('https://whatsip.github.io/khanhlam/images/main_mobile.jpg');
         border-radius: 10px;
       }
 
@@ -152,7 +151,6 @@
       .main-img { width: 85%; padding-top: 160%; }
       .gallery.show { bottom: 40px; }
       .box { width: 60px; }
-      .box span { font-size: 10px; }
     }
   </style>
 </head>
@@ -165,7 +163,6 @@
     <source src="bg.m4a" type="audio/mp4">
   </audio>
 
-  <!-- Popup xuất hiện đầu tiên -->
   <div id="popup">
     <div class="popup-box">
       <p>Xin cảm ơn đã xem qua Portfolio.</p>
@@ -180,24 +177,23 @@
 
   <div class="gallery" id="gallery">
     <div class="box" onclick="openPage('portfolio.html')">
-      <img src="images/portfolio.jpg" alt="Portfolio">
+      <img src="https://whatsip.github.io/khanhlam/images/portfolio.jpg" alt="Portfolio">
     </div>
     <div class="box" onclick="openPage('design.html')">
-      <img src="images/design.jpg" alt="Design">
+      <img src="https://whatsip.github.io/khanhlam/images/design.jpg" alt="Design">
     </div>
     <div class="box" onclick="openPage('photo.html')">
-      <img src="images/photo.jpg" alt="Photo">
+      <img src="https://whatsip.github.io/khanhlam/images/photo.jpg" alt="Photo">
     </div>
     <div class="box" onclick="openPage('video.html')">
-      <img src="images/video.jpg" alt="Video">
+      <img src="https://whatsip.github.io/khanhlam/images/video.jpg" alt="Video">
     </div>
     <div class="box" onclick="openPage('tech.html')">
-      <img src="images/tech.jpg" alt="Tech">
+      <img src="https://whatsip.github.io/khanhlam/images/tech.jpg" alt="Tech">
     </div>
   </div>
 
   <style>
-    /* Popup styles */
     #popup {
       position: fixed;
       inset: 0;
@@ -235,7 +231,6 @@
   </style>
 
   <script>
-    // Animation show nội dung
     setTimeout(() => {
       document.getElementById('myName').classList.add('move-down');
       setTimeout(() => {
@@ -246,7 +241,6 @@
       }, 400);
     }, 400);
 
-    // Popup trigger nhạc
     document.getElementById("popupBtn").addEventListener("click", () => {
       document.getElementById("popup").style.display = "none";
       const bg = document.getElementById("bgMusic");
@@ -256,5 +250,4 @@
     function openPage(url) { window.location.href = url; }
   </script>
 </body>
-
 </html>
