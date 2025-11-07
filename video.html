@@ -13,7 +13,6 @@
       background: #000;
     }
 
-    /* 🔹 Video nền */
     video.bg-video {
       position: fixed;
       top: 0; left: 0;
@@ -22,7 +21,6 @@
       z-index: -2;
     }
 
-    /* 🔹 Overlay nền đen 80% */
     .overlay {
       position: fixed;
       top: 0; left: 0;
@@ -38,7 +36,6 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.7);
     }
 
-    /* 🔹 Gallery */
     .gallery {
       display: grid;
       gap: 15px;
@@ -61,19 +58,14 @@
       border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .gallery video {
+    .gallery iframe {
       width: 100%;
       height: 100%;
+      border: 0;
+      pointer-events: none;
       object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
     }
 
-    .gallery div:hover video {
-      transform: scale(1.05);
-    }
-
-    /* 🔹 Popup video */
     .popup {
       display: none;
       position: fixed;
@@ -92,13 +84,12 @@
       display: inline-block;
     }
 
-    .popup-content video {
-      max-width: 90vw;
-      max-height: 90vh;
+    .popup-content iframe {
+      width: 90vw;
+      height: 90vh;
       border-radius: 8px;
+      border: 0;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
-      display: block;
-      object-fit: contain;
     }
 
     .popup-content .close {
@@ -124,7 +115,6 @@
       background: rgba(255,255,255,0.3);
     }
 
-    /* 🔹 Nút quay lại */
     .back {
       position: fixed;
       top: 20px;
@@ -146,7 +136,7 @@
   </style>
 </head>
 <body>
-  <!-- 🔹 Nền video -->
+
   <video autoplay muted loop playsinline class="bg-video">
     <source src="videos/bg_video.mp4" type="video/mp4">
   </video>
@@ -155,62 +145,67 @@
   <a href="index.html" class="back">⟵ Quay lại</a>
 
   <h2>Commercial Video - Video quảng cáo thương mại</h2>
+
   <div id="videos-section-1" class="gallery"></div>
 
   <script>
-    function createVideos(section, popupPrefix, path, count) {
-      for (let i = 1; i <= count; i++) {
-        const div = document.createElement("div");
-        const vid = document.createElement("video");
-        vid.src = `${path}${i}.mp4`;
-        vid.muted = true;
-        vid.preload = "metadata";
-        div.appendChild(vid);
-        section.appendChild(div);
+    const videos = [
+      { id: "g1y7or" }
+    ];
 
-        // Tạo popup
-        const popup = document.createElement("div");
-        popup.className = "popup";
-        popup.innerHTML = `
-          <div class="popup-content">
-            <video controls>
-              <source src="${path}${i}.mp4" type="video/mp4">
-              Trình duyệt của bạn không hỗ trợ video.
-            </video>
-            <span class="close">&times;</span>
-          </div>
-        `;
-        document.body.appendChild(popup);
+    const section = document.getElementById("videos-section-1");
 
-        // Khi click vào thumbnail -> mở popup
-        div.addEventListener("click", () => {
-          popup.classList.add("active");
-          const pv = popup.querySelector("video");
-          pv.currentTime = 0;
-          pv.play();
-        });
+    videos.forEach(v => {
+      const div = document.createElement("div");
 
-        // Khi click ra ngoài popup -> đóng
-        popup.addEventListener("click", e => {
-          if (e.target === popup) {
-            const pv = popup.querySelector("video");
-            pv.pause();
-            popup.classList.remove("active");
-          }
-        });
+      // Thumbnail = iframe nhưng tắt click
+      div.innerHTML = `
+        <iframe src="https://streamable.com/e/${v.id}" allowfullscreen></iframe>
+      `;
+      section.appendChild(div);
 
-        // Khi click nút close -> đóng popup
-        popup.querySelector(".close").addEventListener("click", e => {
-          e.stopPropagation();
-          const pv = popup.querySelector("video");
-          pv.pause();
-          popup.classList.remove("active");
-        });
-      }
-    }
+      // Popup
+      const popup = document.createElement("div");
+      popup.className = "popup";
+      popup.innerHTML = `
+        <div class="popup-content">
+          <iframe src="https://streamable.com/e/${v.id}" allowfullscreen></iframe>
+          <span class="close">&times;</span>
+        </div>
+      `;
+      document.body.appendChild(popup);
 
-    // 🔹 Gọi tạo video
-    createVideos(document.getElementById("videos-section-1"), "vid1_", "videos/video/video_1_", 11);
+      // Mở popup
+      div.addEventListener("click", () => {
+        popup.classList.add("active");
+      });
+
+      // Hàm tắt popup và pause video
+function closePopup(popupElem, id) {
+  const iframe = popupElem.querySelector("iframe");
+  const src = iframe.src;     // lưu src hiện tại
+  iframe.src = "";            // reset để dừng video
+  setTimeout(() => {
+    iframe.src = src;         // gắn lại để lần sau mở vẫn chạy bình thường
+  }, 50);
+  popupElem.classList.remove("active");
+}
+
+// Đóng khi click ra ngoài popup
+popup.addEventListener("click", e => {
+  if (e.target === popup) {
+    closePopup(popup, v.id);
+  }
+});
+
+// Đóng khi nhấn nút X
+popup.querySelector(".close").addEventListener("click", e => {
+  e.stopPropagation();
+  closePopup(popup, v.id);
+});
+
+    });
   </script>
+
 </body>
 </html>
