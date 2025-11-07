@@ -36,26 +36,29 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.7);
     }
 
+    /* 🎯 Layout grid mới */
     .gallery {
       display: grid;
       gap: 15px;
       justify-content: center;
       padding: 20px;
-      grid-template-columns: repeat(5, 180px);
-      max-width: calc(5 * 180px + 4 * 15px);
-      margin: auto;
+      grid-template-columns: repeat(5, 160px);
+      grid-auto-rows: 160px;
     }
 
     .gallery div {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      overflow: hidden;
+      width: 160px;
+      height: 160px;
       border-radius: 12px;
+      overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      background: #111;
       cursor: pointer;
-      background: #222;
-      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery div:hover {
+      transform: scale(1.05);
     }
 
     .gallery iframe {
@@ -66,6 +69,20 @@
       object-fit: cover;
     }
 
+    /* Responsive: giảm còn 3 cột trên mobile */
+    @media (max-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(3, 120px);
+        grid-auto-rows: 120px;
+      }
+
+      .gallery div {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    /* Popup */
     .popup {
       display: none;
       position: fixed;
@@ -150,7 +167,11 @@
 
   <script>
     const videos = [
-      { id: "g1y7or" }
+      { id: "g1y7or" },
+      { id: "n1bth3" },
+      { id: "zzt5it" },
+      { id: "o3eixk" },
+      { id: "1bh8cg" },
     ];
 
     const section = document.getElementById("videos-section-1");
@@ -181,29 +202,28 @@
       });
 
       // Hàm tắt popup và pause video
-function closePopup(popupElem, id) {
-  const iframe = popupElem.querySelector("iframe");
-  const src = iframe.src;     // lưu src hiện tại
-  iframe.src = "";            // reset để dừng video
-  setTimeout(() => {
-    iframe.src = src;         // gắn lại để lần sau mở vẫn chạy bình thường
-  }, 50);
-  popupElem.classList.remove("active");
-}
+      function closePopup(popupElem, id) {
+        const iframe = popupElem.querySelector("iframe");
+        const src = iframe.src;     // lưu src hiện tại
+        iframe.src = "";            // reset để dừng video
+        setTimeout(() => {
+          iframe.src = src;         // gắn lại để lần sau mở vẫn chạy bình thường
+        }, 50);
+        popupElem.classList.remove("active");
+      }
 
-// Đóng khi click ra ngoài popup
-popup.addEventListener("click", e => {
-  if (e.target === popup) {
-    closePopup(popup, v.id);
-  }
-});
+      // Đóng khi click ra ngoài popup
+      popup.addEventListener("click", e => {
+        if (e.target === popup) {
+          closePopup(popup, v.id);
+        }
+      });
 
-// Đóng khi nhấn nút X
-popup.querySelector(".close").addEventListener("click", e => {
-  e.stopPropagation();
-  closePopup(popup, v.id);
-});
-
+      // Đóng khi nhấn nút X
+      popup.querySelector(".close").addEventListener("click", e => {
+        e.stopPropagation();
+        closePopup(popup, v.id);
+      });
     });
   </script>
 
