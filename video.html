@@ -36,38 +36,38 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.7);
     }
 
-    /* 🎯 Layout grid mới */
-    .gallery {
-      display: grid;
-      gap: 15px;
-      justify-content: center;
-      padding: 20px;
-      grid-template-columns: repeat(5, 160px);
-      grid-auto-rows: 160px;
-    }
+.gallery {
+  display: grid;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-    .gallery div {
-      width: 160px;
-      height: 160px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-      background: #111;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+.gallery div {
+  aspect-ratio: 1 / 1; /* ô vuông tự động */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  background: #111;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
-    .gallery div:hover {
-      transform: scale(1.05);
-    }
+.gallery div:hover {
+  transform: scale(1.05);
+}
 
-    .gallery iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      pointer-events: none;
-      object-fit: cover;
-    }
+.gallery iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+  object-fit: cover;
+}
+
 
     /* Responsive: giảm còn 3 cột trên mobile */
     @media (max-width: 900px) {
@@ -234,4 +234,5 @@
 
 </body>
 </html>
+
 
