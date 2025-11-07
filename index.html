@@ -8,7 +8,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
     html, body { height: 100%; }
     body {
-      background: #111;
+      background: #111 url('https://whatsip.github.io/khanhlam/images/bg.jpg') center/cover no-repeat;
       color: #fff;
       overflow: hidden;
       display: flex;
@@ -17,13 +17,6 @@
       position: relative;
     }
 
-    #bgVideo {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
     body::before {
       content: "";
       position: absolute;
@@ -155,13 +148,6 @@
   </style>
 </head>
 <body>
-  <video id="bgVideo" autoplay muted loop playsinline>
-    <source src="bg.mp4" type="video/mp4">
-  </video>
-
-  <audio id="bgMusic" loop>
-    <source src="bg.m4a" type="audio/mp4">
-  </audio>
 
   <div id="popup">
     <div class="popup-box">
@@ -243,8 +229,6 @@
 
     document.getElementById("popupBtn").addEventListener("click", () => {
       document.getElementById("popup").style.display = "none";
-      const bg = document.getElementById("bgMusic");
-      bg.play().catch(()=>{});
     });
 
     function openPage(url) { window.location.href = url; }
