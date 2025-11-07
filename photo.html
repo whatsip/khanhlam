@@ -32,8 +32,8 @@
     }
 
     h2 {
-      margin: 30px 0 15px;
-      font-size: 2em;
+      margin: 40px 0 15px;
+      font-size: clamp(1.4em, 2vw, 2em);
       font-weight: bold;
       text-shadow: 0 2px 6px rgba(0,0,0,0.7);
     }
@@ -52,38 +52,38 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.2s ease;
+      font-size: clamp(14px, 1.8vw, 16px);
     }
     .tabs button.active,
     .tabs button:hover {
       background: rgba(255,255,255,0.3);
     }
 
-    /* Grid ảnh */
+    /* 🔹 Grid ảnh responsive (y như design.html) */
     .gallery {
       display: grid;
-      gap: 15px;
+      gap: 16px;
       justify-content: center;
       padding: 20px;
-    }
-    .images-grid {
-      grid-template-columns: repeat(5, 160px);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .gallery div {
       position: relative;
-      width: 160px;
-      height: 160px;
+      aspect-ratio: 1/1;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
       cursor: pointer;
-      transform: translateX(-20px);
+      transform: translateY(15px);
       opacity: 0;
       transition: transform 0.6s ease, opacity 0.6s ease;
     }
 
     .gallery div.show {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
     }
 
@@ -99,7 +99,7 @@
       transform: scale(1.05);
     }
 
-    /* Popup */
+    /* 🔹 Popup */
     .popup {
       display: none;
       position: fixed;
@@ -115,12 +115,13 @@
     .popup-content {
       position: relative;
       display: inline-block;
+      animation: fadeIn 0.3s ease;
     }
 
     .popup-content img {
       max-width: 90vw;
       max-height: 90vh;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
       display: block;
       object-fit: contain;
@@ -165,6 +166,29 @@
     .back:hover {
       background: rgba(255,255,255,0.3);
     }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    /* 🔹 Responsive cho mobile (giống design.html) */
+    @media (max-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+      .gallery div {
+        border-radius: 10px;
+      }
+      .tabs button {
+        padding: 8px 16px;
+      }
+      h2 {
+        font-size: clamp(1.1em, 4vw, 1.6em);
+      }
+    }
   </style>
 </head>
 <body>
@@ -178,13 +202,13 @@
   </div>
 
   <h2>DON CHICKEN - Chuỗi nhà hàng Hàn Quốc</h2>
-  <div id="images-section-2" class="gallery images-grid"></div>
+  <div id="images-section-2" class="gallery"></div>
 
   <h2>Portrait shooting - Ảnh chân dung/Beauty</h2>
-  <div id="images-section-1" class="gallery images-grid"></div>
+  <div id="images-section-1" class="gallery"></div>
 
   <h2>Other - Khác</h2>
-  <div id="images-section-3" class="gallery images-grid"></div>
+  <div id="images-section-3" class="gallery"></div>
 
   <!-- Popup dùng chung -->
   <div id="popup" class="popup">
@@ -199,7 +223,7 @@
     const popupImg = document.getElementById("popup-img");
     const closeBtn = document.querySelector(".close");
 
-    // 🔹 Tạo gallery
+    // 🔹 Tạo gallery động
     function createImages(section, path, count) {
       for (let i = 1; i <= count; i++) {
         const div = document.createElement("div");
@@ -220,7 +244,7 @@
       }
     }
 
-    // Gọi 3 gallery
+    // Gọi gallery
     createImages(document.getElementById("images-section-1"), "images/photo/image_2_", 16);
     createImages(document.getElementById("images-section-2"), "images/photo/image_1_", 10);
     createImages(document.getElementById("images-section-3"), "images/photo/image_3_", 1);
@@ -231,13 +255,13 @@
       if (e.target === popup) popup.classList.remove("show");
     });
 
-    // 🔹 Hiệu ứng load ảnh mượt
+    // 🔹 Hiệu ứng load ảnh
     window.addEventListener("load", () => {
       const items = document.querySelectorAll(".gallery div");
       items.forEach((item, index) => {
         setTimeout(() => {
           item.classList.add("show");
-        }, index * 80); // trễ 80ms giữa mỗi ảnh
+        }, index * 70);
       });
     });
   </script>
