@@ -15,6 +15,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      perspective: 1000px; /* enable 3D depth */
     }
 
     body::before {
@@ -29,10 +30,11 @@
       position: relative;
       text-align: center;
       z-index: 1;
-      transition: transform 1s ease;
       width: 100%;
       max-width: 1100px;
       padding: 20px;
+      transform-style: preserve-3d; /* for 3D rotations */
+      transition: transform 0.15s ease-out; /* smoother parallax response */
     }
 
     #myName {
@@ -220,11 +222,23 @@
       }, 400);
     }, 400);
 
-    document.getElementById("popupBtn").addEventListener("click", () => {
-      document.getElementById("popup").style.display = "none";
+    function openPage(url) { window.location.href = url; }
+
+    /* === 3D Parallax Mouse Effect === */
+    const container = document.getElementById('container');
+
+    document.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX - innerWidth / 2) / innerWidth;
+      const y = (e.clientY - innerHeight / 2) / innerHeight;
+      const rotateY = x * 20; // horizontal tilt
+      const rotateX = -y * 20; // vertical tilt
+      container.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
     });
 
-    function openPage(url) { window.location.href = url; }
+    document.addEventListener('mouseleave', () => {
+      container.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
   </script>
 </body>
 </html>
