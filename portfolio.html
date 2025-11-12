@@ -148,6 +148,38 @@
       color: #777;
       margin-top: 30px;
     }
+
+        /* 3 HÌNH DƯỚI CÙNG */
+    .bottom-images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .bottom-images .img-box {
+      flex: 1;
+      aspect-ratio: 1 / 1;
+      background: #ccc;
+      border-radius: 12px;
+      border: 3px solid #fff;
+      max-width: 300px;
+      overflow: hidden;
+    }
+
+    .bottom-images .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 800px) {
+      .bottom-images {
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -351,8 +383,19 @@
       &copy; 2025 Nguyễn Khánh Lam. All rights reserved.
     </footer>
   </div>
+
+
+  <!-- 🔹 3 hình vuông dưới cùng -->
+  <div class="bottom-images">
+    <div class="img-box"><img src="https://whatsip.github.io/khanhlam/DSC08672.jpg"></div>
+    <div class="img-box"><img src="https://whatsip.github.io/khanhlam/received_220063072435900.JPG"></div>
+    <div class="img-box"><img src="https://whatsip.github.io/khanhlam/IMG_0192.jpg"></div>
+  </div>
+
+  
 </body>
 </html>
+
 
 
 
